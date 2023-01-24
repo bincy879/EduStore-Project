@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--      <div class="col-12 grid-margin stretch-card">-->
+              <div class="container">
+                <div class="card-body">
+                  <h4 class="card-title">Edit admin</h4>
+                  <p class="card-description">
+                    Admin details
+                  </p>
+                  <form class="forms-sample" method="post" action="{% url 'update_admin' dataid=data.id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="a_name" value="{{ data.Name }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" name="a_email" value="{{ data.Email_id }}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Mobile</label>
+                      <input type="text" class="form-control" id="exampleInputPassword4" placeholder="mob. number" name="a_mob" value="{{ data.Mobile }}">
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+                    <div class="form-group">
+                      <label>Profile image</label>
+                      <input type="file" class="form-control" id="exampleInputPassword1" name="a_img" value="{{ data.Image.url }}">
+<!--                      <div class="input-group col-xs-12">-->
+<!--                        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="submit">Upload</button>-->
+<!--                        </span>-->
+<!--                      </div>-->
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputCity1">City</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">-->
+<!--                    </div>-->
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Address</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="a_adrss" value="{{ data.Address }}"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Save changes</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+<!--            </div>-->
+</body>
+</html>
+{% endblock %}

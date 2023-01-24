@@ -1,0 +1,61 @@
+{% extends 'homepage.html' %}
+{% block content %}
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Available Items</h1>
+<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>-->
+                    </div>
+                </div>
+</div>
+<div class="categories-shop">
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <a class="btn hvr-hover" href="#">{{ dat.P_Name }} </a>
+                        <img class="img-fluid" src="{{ dat.P_Img.url }}" alt="" />
+                    </div>
+
+                </div>
+                <div class="div1">
+                    <form>
+                            <a href="#" class="title">Price per product : {{ dat.Price }}</a><br/>
+                            <input type="hidden"  id="Price" name="Price" value="{{ dat.Price }}">
+
+                            <a href="#" class="title">Select your required Quantity:</a>
+							<input type="number" min="1" max="10" name="qty" id="qty" required><br/></br>
+
+                            <a href="#" class="title">Total Price:</a>
+                            <input type="text" name="totalprice" id="totalprice" ><br/><br/>
+
+                            <a class="btn hvr-hover" href="{% url 'log' %}">Add to Cart</a>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+</form>
+.div1{
+    text-align:center;
+    margin-top:50px;
+}
+<script type="text/javascript">
+              $(document).ready(function(){
+              $("#qty").change(function(){
+
+              quantity=document.getElementById("qty").value;
+
+              Price=document.getElementById("Price").value;
+
+              total=quantity * Price;
+
+              document.getElementById("totalprice").value = total;
+              });
+              });
+
+</script>
+{% endblock %}

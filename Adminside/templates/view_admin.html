@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View Admin</h4>
+<!--                  <p class="card-description">-->
+<!--                    Add class <code>.table-bordered</code>-->
+<!--                  </p>-->
+                  <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Email_id
+                          </th>
+                          <th>
+                            Mobile
+                          </th>
+                          <th>
+                            Profile Image
+                          </th>
+                          <th>
+                            Address
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <td>{{ d.Name }}</td>
+                            <td>{{ d.Email_id }}</td>
+                            <td>{{ d.Mobile }}</td>
+                            <td>
+                                <img src="{{ d.Image.url }}">
+                            </td>
+                            <td>{{ d.Address }}</td>
+                            <td>
+                                <form method="post" action="{% url 'edit_admin' dataid=d.id %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Edit</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'del_admin' dataid=d.id %}" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}
